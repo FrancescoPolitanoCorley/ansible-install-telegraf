@@ -30,10 +30,19 @@
   tasks:
   - name: Setup Telegraf main file
     template:
-      src: "/configuration-files/telegraf.conf"
+      src: "{{playbook_dir}}/configuration-files/telegraf.conf"
       dest: "/etc/telegraf/telegraf.conf"
+    become: true
+    become_user: root
+    become_method: sudo
+    # when: my_package_check_deb.rc == 1
+
   - name: Setup Telegraf configuration files
     template:
-      src: "/configuration-files/telegraf.d"
+      src: "{{playbook_dir}}/configuration-files/telegraf.d"
       dest: "/etc/telegraf/etc/telegraf/telegraf.d"
-      with_filetree: "/configuration-files/telegraf.d"
+      with_filetree: "{{playbook_dir}}/configuration-files/telegraf.d"
+    become: true
+    become_user: root
+    become_method: sudo
+    # when: my_package_check_deb.rc == 1

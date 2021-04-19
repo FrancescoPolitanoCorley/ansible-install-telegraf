@@ -1,8 +1,8 @@
 [all]
-localhost ssh_user=ubuntu
+18.156.76.98 
 
 [web-servers]
-localhost ssh_user=ubuntu
+18.156.76.98 
 
 [mysql]
 
