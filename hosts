@@ -1,0 +1,9 @@
+[all]
+localhost ssh_user=ubuntu
+
+[web-servers]
+localhost ssh_user=ubuntu
+
+[mysql]
+
+[mongodb]

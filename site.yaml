@@ -1,0 +1,39 @@
+- hosts: all
+  vars_files:
+    - vars.yaml
+  remote_user: "{{ssh_user}}"
+  tasks:
+  - name: Check if telegraf is installed
+    command: dpkg-query -W telegraf
+    register: my_package_check_deb
+    failed_when: my_package_check_deb.rc > 1
+    changed_when: my_package_check_deb.rc == 1
+
+  - name: Download telegraf
+    get_url:
+      url: "{{package_url}}"
+      dest: "/home/{{ssh_user}}/telegraf_1.18.1-1_amd64.deb"
+    when: my_package_check_deb.rc == 1
+
+  - name: Install telegraf
+    apt:
+      deb: "/home/{{ssh_user}}/telegraf_1.18.1-1_amd64.deb"
+    become: true
+    become_user: root
+    become_method: sudo
+    when: my_package_check_deb.rc == 1
+
+- hosts: web-servers
+  vars_files:
+    - vars.yaml
+  remote_user: "{{ssh_user}}"
+  tasks:
+  - name: Setup Telegraf main file
+    template:
+      src: "/configuration-files/telegraf.conf"
+      dest: "/etc/telegraf/telegraf.conf"
+  - name: Setup Telegraf configuration files
+    template:
+      src: "/configuration-files/telegraf.d"
+      dest: "/etc/telegraf/etc/telegraf/telegraf.d"
+      with_filetree: "/configuration-files/telegraf.d"

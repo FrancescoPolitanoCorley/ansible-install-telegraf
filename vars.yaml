@@ -1,0 +1,2 @@
+# ssh_user: "ubuntu"
+package_url: "https://dl.influxdata.com/telegraf/releases/telegraf_1.18.1-1_amd64.deb"
