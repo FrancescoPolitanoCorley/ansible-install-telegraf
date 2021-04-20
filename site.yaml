@@ -23,11 +23,6 @@
     become_method: sudo
     when: my_package_check_deb.rc == 1
 
-- hosts: web-servers
-  vars_files:
-    - vars.yaml
-  remote_user: "{{ssh_user}}"
-  tasks:
   - name: Setup Telegraf main file
     template:
       src: "{{playbook_dir}}/configuration-files/{{config_dir}}/telegraf.conf"
