@@ -3,19 +3,19 @@
     - vars.yaml
   remote_user: "{{ssh_user}}"
   tasks:
-  - name: Check if telegraf is installed
+  - name: Check if Telegraf is installed
     command: dpkg-query -W telegraf
     register: my_package_check_deb
     failed_when: my_package_check_deb.rc > 1
     changed_when: my_package_check_deb.rc == 1
 
-  - name: Download telegraf
+  - name: Download Telegraf
     get_url:
       url: "{{package_url}}"
       dest: "/home/{{ssh_user}}/telegraf_1.18.1-1_amd64.deb"
     when: my_package_check_deb.rc == 1
 
-  - name: Install telegraf
+  - name: Install Telegraf
     apt:
       deb: "/home/{{ssh_user}}/telegraf_1.18.1-1_amd64.deb"
     become: true
@@ -40,3 +40,12 @@
     become_method: sudo
     with_fileglob:
     - "{{playbook_dir}}/configuration-files//{{config_dir}}/telegraf.d/*"
+  
+  - name: restart Telegraf service to load configurations
+    become: true
+    become_user: root
+    become_method: sudo
+    service:
+      name: telegraf
+      state: restarted
+
