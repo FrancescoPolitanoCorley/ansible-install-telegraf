@@ -1,0 +1,7 @@
+all:
+  children:
+    webservers:
+      hosts:
+        18.185.56.237
+      vars:
+        config_dir: web-server
