@@ -2,6 +2,13 @@ all:
   children:
     webservers:
       hosts:
-        18.185.56.237
+        18.185.56.237:
+          mysql_user: utente 
+          mysql_password: p455w0rd
       vars:
         config_dir: web-servers
+    # mysql:
+    #   hosts:
+    #     18.185.56.237
+    #   vars:
+    #     config_dir: mysql
