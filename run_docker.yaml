@@ -3,11 +3,6 @@
     - vars.yaml
   remote_user: "{{ssh_user}}"
   tasks:
-  - name: Check if Telegraf is installed
-    command: dpkg-query -W telegraf
-    register: my_package_check_deb
-    failed_when: my_package_check_deb.rc > 1
-    changed_when: my_package_check_deb.rc == 1
   - name: copy Docker Compose files
     copy:
       src: docker-compose-files/{{ item }}
@@ -17,8 +12,12 @@
     - docker-compose.prod.yml
   # use files parameter to use multiple docker-compose.yml files
   - name: deploy Docker Compose stack
+    become: true
+    become_user: root
+    become_method: sudo
     docker_compose:
       project_src: "/home/{{ssh_user}}/docker-compose/"
       files:
       - docker-compose.yml
       - docker-compose.prod.yml
+
