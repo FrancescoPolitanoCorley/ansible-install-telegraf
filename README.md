@@ -11,7 +11,7 @@ Per configurare lo script è necessario:
 
 Per lanciare lo script: 
 
-    `ansible-playbook -i hosts.yaml telegraf.yaml --key-file key.pem`
+    ansible-playbook -i hosts.yaml telegraf.yaml --key-file key.pem`
 
 Dove **key.pem** è il path alla chiave ssh per l'accesso alle macchine dell'inventory.
 
