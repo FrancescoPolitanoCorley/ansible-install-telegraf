@@ -10,7 +10,8 @@ Per configurare lo script è necessario:
 3.  Popolare la directory **configuration-files**, similmente a come fatto per il gruppo d'esempio. Ciascun gruppo deve avere la sua subdirectory così come dichiarata nelle variabili dedicate nel file hosts
 
 Per lanciare lo script: 
-`ansible-playbook -i hosts.yaml telegraf.yaml --key-file key.pem`
+
+`   ansible-playbook -i hosts.yaml telegraf.yaml --key-file key.pem`
 
 Dove **key.pem** è il path alla chiave ssh per l'accesso alle macchine dell'inventory.
 
