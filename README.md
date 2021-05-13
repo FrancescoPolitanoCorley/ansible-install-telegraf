@@ -15,7 +15,7 @@ Per lanciare lo script:
 
 Dove **key.pem** è il path alla chiave ssh per l'accesso alle macchine dell'inventory.
 
-## run_docker.yaml
+## my-app.yaml
 
 Questo playbook lancia un docker-compose sulle macchine host bersaglio.
 
@@ -27,7 +27,7 @@ Per configurare lo script è necessario:
 
 Per lanciare lo script: 
 
-    ansible-playbook -i hosts.yaml run_docker.yaml --key-file key.pem
+    ansible-playbook -i hosts.yaml my-app.yaml --key-file key.pem
 
 Dove **key.pem** è il path alla chiave ssh per l'accesso alle macchine dell'inventory.
 
