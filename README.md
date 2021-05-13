@@ -1,5 +1,7 @@
 Per lanciare i playbook ansible è necessario installare Ansible sulla macchina di controllo, la macchina dalla quale lanciamo i playbook.
+
 Es: sudo apt install ansible
+
 Ansible tra le sue varie dipendenze installa anche Python3.
 
 ## telegraf.yaml
