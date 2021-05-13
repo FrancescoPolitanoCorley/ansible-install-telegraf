@@ -1,14 +1,15 @@
 all:
   children:
-    # webservers:
-    #   hosts:
-    #     18.185.56.237
-    #   vars:
-    #     config_dir: web-servers
-    #     docker-compose-filename: docker-compose.yaml
+    webservers:
+      hosts:
+        3.227.254.121:
+        18.206.74.0:
+      vars:
+        config_dir: web-servers
+        docker-compose-filename: docker-compose.yaml
     mysql:
       hosts:
-        18.185.56.237:
+        34.238.194.179:
           mysql_user: utente 
           mysql_password: p455w0rd
       vars:

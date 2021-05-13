@@ -3,4 +3,4 @@ ssh_user: "ubuntu"
 # L'url della versione di telegraf che si vuole andare ad installare
 package_url: "https://dl.influxdata.com/telegraf/releases/telegraf_1.18.1-1_amd64.deb"
 # La directory della macchina di controllo dalla quale si esegue lo script 
-playbook_dir: "/home/francesco/laboratori/ansible-install-telegraf"
+playbook_dir: "/home/ubuntu/git/ansible/ansible-install-telegraf"

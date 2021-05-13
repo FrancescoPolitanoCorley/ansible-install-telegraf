@@ -1,22 +1,29 @@
-- hosts: all
+- name: include docker recipe
+  import_playbook: recipes/docker.yaml
+  
+- hosts: webservers
   vars_files:
     - vars.yaml
   remote_user: "{{ssh_user}}"
   tasks:
+
+  - name: Creates directory
+    file:
+      path: "/home/{{ssh_user}}/docker-compose"
+      state: directory
+
   - name: copy Docker Compose files
     copy:
-      src: docker-compose-files/{{ item }}
+      src: "{{ playbook_dir }}/docker-compose-files/{{ item }}"
       dest: "/home/{{ssh_user}}/docker-compose/{{ item }}"
     loop:
-    - docker-compose.yml
-    - docker-compose.prod.yml
+    - docker-compose.yaml
+  
   # use files parameter to use multiple docker-compose.yml files
   - name: deploy Docker Compose stack
-    become: true
-    become_user: root
-    become_method: sudo
     docker_compose:
       project_src: "/home/{{ssh_user}}/docker-compose/"
       files:
-      - "{{docker-compose-filename}}"
-
+      - "docker-compose.yaml"
+      tls: no
+      tls_verify: no
